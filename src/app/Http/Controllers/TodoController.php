@@ -1,3 +1,4 @@
+<?php
 namespace App\Http\Controllers;
 
 use App\Todo;
@@ -6,7 +7,7 @@ use App\Todo;
 
 class TodoController extends Controller
 {
-    phppublic function index()
+   public function index()
     {
        
         $todo = new Todo();
@@ -14,9 +15,9 @@ class TodoController extends Controller
   
         return view('todo.index', ['todos' => $todos]);
     }
-}
-public function create()
-{
-    // TODO: 第1引数を指定
-    return view('todo.create'); // 追記
+    public function create()
+    {
+        // TODO: 第1引数を指定
+        return view('todo.create'); // 追記
+    }
 }
