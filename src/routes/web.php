@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +11,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+   // return view('welcome');
+//});
+Route::get('/todo', 'TodoController@index')->name('todo.index'); // ルート名の定義を追記
+Route::get('/todo/create', 'TodoController@create')->name('todo.create'); // 追記
+Route::post('/todo', 'TodoController@store')->name('todo.store');
+
