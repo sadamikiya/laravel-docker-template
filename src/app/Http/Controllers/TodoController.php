@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Todo;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class TodoController extends Controller
 {
    public function index()
@@ -37,5 +37,11 @@ class TodoController extends Controller
 
         return redirect()->route('todo.index'); 
     }
+    public function show($id)
+{
+    $model = new Todo();
+    $todo = $model->find($id);
+    return view('todo.show', ['todo' => $todo]); 
+}
 }
 
