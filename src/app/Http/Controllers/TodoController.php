@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class TodoController extends Controller
 {
+    private $todo; 
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo; 
+    }
    public function index()
     {
        
-        $todo = new Todo();
-        $todos = $todo->all();
+        $todos = $this->todo->all();
   
         return view('todo.index', ['todos' => $todos]);
     }
@@ -23,25 +27,17 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-        // [
-        //     'content' => '犯行予告など悪意のある投稿',
-        //     'user_id' => '1',
-        // ]
     
-        $todo = new Todo();
-        $todo->user_id = Auth::id(); // ログインしている攻撃者のユーザID：2を代入
-        $todo->fill($inputs);
-        // $todo->content = '犯行予告など悪意のある投稿';
-        // $fillableで許可していないため被害者のユーザID：1は再代入されない
-        $todo->save();
+        $this->todo->fill($inputs); 
+        $this->todo->save(); 
 
         return redirect()->route('todo.index'); 
     }
     public function show($id)
-{
+    {
     $model = new Todo();
-    $todo = $model->find($id);
+    $todo = $this->todo->find($id);
     return view('todo.show', ['todo' => $todo]); 
-}
+    }
 }
 
