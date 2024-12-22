@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\TodoRequest;
 use App\Todo;
-
 use Illuminate\Support\Facades\Auth;
 class TodoController extends Controller
 {
